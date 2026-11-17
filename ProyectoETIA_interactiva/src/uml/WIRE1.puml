@@ -1,0 +1,17 @@
+@startsalt
+{^"ETIA_interactiva - Acceso a Plataforma"
+    .
+    <b>Bienvenido al Sistema de Aprendizaje de IA Generativa</b>
+    .
+    {
+        Correo Electrónico: | "alumno@uacm.edu.mx       "
+        Contraseña:         | "************************"
+    }
+    .
+    { [ Iniciar Sesión ] | [ Registrarse ] }
+    .
+    {#
+        <color:blue>[i] Ingresa tus credenciales para guardar tu progreso y obtener tu certificado.</color>
+    }
+}
+@endsalt

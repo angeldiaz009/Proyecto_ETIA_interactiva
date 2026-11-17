@@ -1,0 +1,28 @@
+@startuml
+left to right direction
+
+actor "Alumno" as user
+
+rectangle "Plataforma Educativa ETIA_interactiva" {
+    usecase "Registrarse / Iniciar Sesión" as UC1
+    usecase "Consultar Tips y Buenas Prácticas" as UC2
+    usecase "Consultar Reglas y Ética de IA" as UC3
+    usecase "Copiar Plantillas de Prompts" as UC4
+    usecase "Descargar Apuntes en PDF" as UC5
+    usecase "Presentar Examen de Módulo" as UC6
+    usecase "Calificar y Actualizar Progreso" as UC7
+    usecase "Generar y Descargar Certificado" as UC8
+    usecase "Validar Credenciales" as UC9
+}
+
+user -- UC1
+user -- UC2
+user -- UC3
+user -- UC4
+user -- UC5
+user -- UC6
+
+UC1 .> UC9 : <<include>>
+UC6 .> UC7 : <<include>>
+UC7 <. UC8 : <<extend>>\n[Si calificación >= 85 en todos los módulos]
+@enduml

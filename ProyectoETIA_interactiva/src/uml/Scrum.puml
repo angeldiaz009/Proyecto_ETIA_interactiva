@@ -1,0 +1,42 @@
+@startuml
+left to right direction
+title Product Backlog Ágil SCRUM - Proyecto ETIA_interactiva
+
+package "Product Backlog (ETIA_interactiva)" {
+
+  rectangle "SPRINT 1: Planeación y Modelado" as S1 #E0F2FE {
+    card "[HU-01] Planeación Estratégica y Factibilidades" as HU1
+    card "[TASK-01] Definir Objetivo SMART y Alcance (4 Módulos)" as T1
+    card "[TASK-02] Levantamiento de RF-01..08 y RNF-01..05" as T2
+    card "[TASK-03] Modelar Diagramas UML (Clases, CU, Act.)" as T3
+  }
+
+  rectangle "SPRINT 2: Diseño UI y Base de Datos" as S2 #DCFCE7 {
+    card "[HU-02] Diseño Visual y Persistencia Relacional" as HU2
+    card "[TASK-04] Bocetar Wireframes en Balsamiq (Layout 7)" as T4
+    card "[TASK-05] Diseñar DER y Script Físico SQLite" as T5
+    card "[BUG-01] Activar PRAGMA foreign_keys en SQLite" as B1 #FFE4E6
+  }
+
+  rectangle "SPRINT 3: Desarrollo Web, Pruebas y Despliegue" as S3 #FFEDD5 {
+    card "[HU-03] Interactividad, Evaluación >= 85 y Diploma" as HU3
+    card "[TASK-06] Maquetar HTML/CSS y Lógica JS con Modales" as T6
+    card "[TASK-07] Conectar Backend Flask a etia_interactiva.db" as T7
+    card "[BUG-02] Corregir ruta estática 404 en servidor.py" as B2 #FFE4E6
+    card "[TASK-08] Subir Portafolio a GitHub y Vincular Jira" as T8
+  }
+}
+
+HU1 --> T1
+HU1 --> T2
+HU1 --> T3
+
+HU2 --> T4
+HU2 --> T5
+T5 ..> B1 : corrige el error
+
+HU3 --> T6
+HU3 --> T7
+T7 ..> B2 : corrige el error
+HU3 --> T8
+@enduml

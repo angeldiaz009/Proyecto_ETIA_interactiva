@@ -1,0 +1,57 @@
+@startuml
+left to right direction
+
+class Usuario {
+    - idUsuario: int
+    - nombre: String
+    - email: String
+    - password: String
+    - progresoGeneral: double
+    ---------------------
+    + registrar(): boolean
+    + iniciarSesion(): boolean
+    + consultarProgreso(): double
+}
+
+class Modulo {
+    - idModulo: int
+    - titulo: String
+    - categoria: String
+    - contenido: String
+    ---------------------
+    + mostrarTips(): String
+    + mostrarReglasEtica(): String
+}
+
+class ApuntePlantilla {
+    - idApunte: int
+    - titulo: String
+    - textoPrompt: String
+    - rutaPdf: String
+    ---------------------
+    + copiarPrompt(): String
+    + descargarPdf(): File
+}
+
+class Evaluacion {
+    - idEvaluacion: int
+    - puntajeObtenido: double
+    - aprobado: boolean
+    ---------------------
+    + presentarCuestionario(): void
+    + calificarRespuestas(): double
+}
+
+class Certificado {
+    - idCertificado: int
+    - folio: String
+    - fechaEmision: String
+    ---------------------
+    + generarDiploma(): File
+}
+
+Usuario "1" -- "0..*" Evaluacion : realiza
+Usuario "1" -- "0..1" Certificado : obtiene
+Modulo "1" *-- "1..*" ApuntePlantilla : contiene
+Modulo "1" -- "1" Evaluacion : evalua
+@enduml

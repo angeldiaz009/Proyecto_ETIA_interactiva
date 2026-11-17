@@ -1,0 +1,24 @@
+@startuml
+start
+
+:Alumno selecciona Módulo y presiona "Presentar Examen";
+:Sistema despliega cuestionario y ejercicios de detección;
+:Alumno responde y envía evaluación;
+:Sistema califica respuestas y calcula puntaje (0 - 100);
+
+if (¿Calificación >= 85?) then (SI)
+    :Marcar módulo como Aprobado;
+    :Actualizar porcentaje de progreso del Alumno en BD;
+    if (¿Completó los 4 módulos?) then (SI)
+        :Generar Certificado / Diploma automático;
+        :Habilitar descarga de Certificado;
+    else (NO)
+        :Habilitar siguiente módulo de estudio;
+    endif
+else (NO)
+    :Mostrar mensaje de retroalimentación;
+    :Sugerir repaso en Módulo de Apuntes y Tips;
+endif
+
+stop
+@enduml

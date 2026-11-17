@@ -1,0 +1,30 @@
+@startsalt
+{^"ETIA_interactiva - Panel del Alumno"
+    { <b>Usuario: Miguel Ángel Mejía</b> | Progreso Global: [========..] 75% | [ Cerrar Sesión ] }
+    --
+    {
+        {+
+            <b>Módulo 1: Tips y Buenas Prácticas</b>
+            Cómo pedir prompts efectivos y proteger datos.
+            [ Entrar al Módulo 1 ]
+        } |
+        {+
+            <b>Módulo 2: Reglas y Ética</b>
+            Derechos de autor, privacidad y normatividad.
+            [ Entrar al Módulo 2 ]
+        }
+    }
+    {
+        {+
+            <b>Módulo 3: Apuntes y Auto-Respuestas</b>
+            Plantillas listas para copiar y guías PDF.
+            [ Copiar Prompts ] | [ Descargar PDF ]
+        } |
+        {+
+            <b>Módulo 4: Exámenes y Certificado</b>
+            Cuestionarios cortos (Mínimo aprobatorio: 85).
+            [ Presentar Examen ] | [ Descargar Diploma ]
+        }
+    }
+}
+@endsalt

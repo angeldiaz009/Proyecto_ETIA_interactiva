@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ETIA_interactiva - Plataforma de IA Generativa | MEJIA</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- =========================================================
+       VISTA 1: INICIO DE SESIÓN Y REGISTRO (RF-01)
+       ========================================================= -->
+  <div id="vista-auth" class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-header">
+        <div class="logo-badge"></div>
+        <h2>ETIA_interactiva</h2>
+        <p>Plataforma de Aprendizaje y Ética en IA Generativa</p>
+      </div>
+
+      <!-- Formulario de Login -->
+      <form id="form-login" onsubmit="iniciarSesion(event)">
+        <h3>Iniciar Sesión</h3>
+        <div class="input-group">
+          <label for="login-email">Correo Electrónico</label>
+          <input type="email" id="login-email" placeholder="alumno@uacm.edu.mx" required>
+        </div>
+        <div class="input-group">
+          <label for="login-pass">Contraseña</label>
+          <input type="password" id="login-pass" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-primary">Ingresar a la Plataforma</button>
+        <p class="auth-switch">¿Aún no tienes cuenta? <a href="#" onclick="alternarAuth('registro')">Regístrate aquí</a></p>
+      </form>
+
+      <!-- Formulario de Registro -->
+      <form id="form-registro" class="oculto" onsubmit="registrarUsuario(event)">
+        <h3>Crear Nueva Cuenta</h3>
+        <div class="input-group">
+          <label for="reg-nombre">Nombre Completo (para tu Certificado)</label>
+          <input type="text" id="reg-nombre" placeholder="Ej. Miguel Ángel Mejía Díaz" required>
+        </div>
+        <div class="input-group">
+          <label for="reg-email">Correo Electrónico</label>
+          <input type="email" id="reg-email" placeholder="alumno@uacm.edu.mx" required>
+        </div>
+        <div class="input-group">
+          <label for="reg-pass">Contraseña</label>
+          <input type="password" id="reg-pass" placeholder="Mínimo 4 caracteres" minlength="4" required>
+        </div>
+        <button type="submit" class="btn-primary">Registrarme y Comenzar</button>
+        <p class="auth-switch">¿Ya tienes cuenta? <a href="#" onclick="alternarAuth('login')">Inicia sesión</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       VISTA 2: PLATAFORMA PRINCIPAL (Layout 7 Mejorado)
+       ========================================================= -->
+  <div id="vista-plataforma" class="shop-container oculto">
+    
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <div class="logo-badge"></div>
+        <span>ETIA_interactiva</span>
+      </div>
+      <div class="nav-actions">
+        <nav class="nav-links">
+          <a href="#seccion-inicio">Inicio</a>
+          <a href="#seccion-recursos">Recursos</a>
+          <a href="#seccion-certificacion">Certificación</a>
+        </nav>
+        <button class="user-actions" onclick="abrirModalCerrarSesion()" title="Clic para opciones de cuenta">
+          <span>👤 <strong id="nombre-usuario-header">Alumno</strong></span>
+          <span class="arrow-down">▾</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 1. SECCIÓN INICIO (Banner + Módulos) -->
+    <section id="seccion-inicio" class="hero-banner">
+      <div class="hero-text">
+        <h1>Domina la IA Generativa con Ética</h1>
+        <p>Aprende buenas prácticas de prompting, normatividad y certifícate con mínimo 85/100.</p>
+        <div class="progress-bar">
+          <div id="barra-progreso" class="progress-fill"></div>
+        </div>
+        <small><strong id="texto-progreso">Avance actual: 0% (0 de 4 módulos aprobados)</strong></small>
+      </div>
+      <div class="hero-image">🤖</div>
+    </section>
+
+    <!-- Módulos de Aprendizaje: Cubos arriba + Franjas descriptivas abajo -->
+    <section class="bloque-seccion">
+      <h2 class="section-title">Módulos de Aprendizaje</h2>
+      
+      <!-- Fila Superior: 4 Cubos limpios -->
+      <div class="categories-grid">
+        <div class="category-card cat-blue" onclick="abrirModalModulo(1)">
+          <span class="icon">💡</span>
+          <h3>1. Tips y Prácticas</h3>
+        </div>
+        <div class="category-card cat-green" onclick="abrirModalModulo(2)">
+          <span class="icon">⚖️</span>
+          <h3>2. Reglas y Ética</h3>
+        </div>
+        <div class="category-card cat-orange" onclick="abrirModalModulo(3)">
+          <span class="icon">📚</span>
+          <h3>3. Apuntes y Prompts</h3>
+        </div>
+        <div class="category-card cat-pink" onclick="abrirModalModulo(4)">
+          <span class="icon">🎓</span>
+          <h3>4. Examen Final</h3>
+        </div>
+      </div>
+
+      <!-- Fila Inferior: Cuadros horizontales del mismo color sin número + descripción al lado -->
+      <div class="submodules-list">
+        <div class="submodule-row cat-blue">
+          <strong>Tips y Prácticas</strong>
+          <span>Redacción de prompts efectivos y protección de seguridad de datos personales.</span>
+        </div>
+        <div class="submodule-row cat-green">
+          <strong>Reglas y Ética</strong>
+          <span>Derechos de autor, propiedad intelectual y uso responsable en la escuela o trabajo.</span>
+        </div>
+        <div class="submodule-row cat-orange">
+          <strong>Apuntes y Prompts</strong>
+          <span>Plantillas estructuradas listas para copiar y resúmenes ejecutivos descargables en PDF.</span>
+        </div>
+        <div class="submodule-row cat-pink">
+          <strong>Examen Final</strong>
+          <span>Cuestionarios interactivos de evaluación y validación de casos prácticos (Mín. 85/100).</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SECCIÓN RECURSOS (3 Rectángulos apilados 1 sobre otro) -->
+    <section id="seccion-recursos" class="bloque-seccion">
+      <h2 class="section-title">Recursos de Estudio y Evaluación</h2>
+      <div class="resources-stack">
+        
+        <!-- Recurso 1 -->
+        <div class="resource-rect">
+          <div class="resource-info">
+            <span class="product-badge">Plantilla Prompt</span>
+            <h4>Estructura Rol - Tarea - Formato</h4>
+            <p>Estructura completa y optimizada para obtener respuestas precisas, claras y sin alucinaciones al trabajar con cualquier Inteligencia Artificial.</p>
+          </div>
+          <div class="resource-action">
+            <button class="btn-action" onclick="abrirModalPrompt()">📋 Copiar Prompt</button>
+          </div>
+        </div>
+
+        <!-- Recurso 2 -->
+        <div class="resource-rect">
+          <div class="resource-info">
+            <span class="product-badge">Guía PDF</span>
+            <h4>Manual de Ética y Normatividad en IA</h4>
+            <p>Documento resumido con las reglas fundamentales de citación, privacidad de datos confidenciales y prevención de plagio académico.</p>
+          </div>
+          <div class="resource-action">
+            <button class="btn-action" onclick="abrirModalPDF()">📥 Descargar PDF</button>
+          </div>
+        </div>
+
+        <!-- Recurso 3 -->
+        <div class="resource-rect">
+          <div class="resource-info">
+            <span class="product-badge">Evaluación</span>
+            <h4>Test Integrador Módulo 4</h4>
+            <p>Evaluación práctica sobre detección de sesgos, información falsa y buenas prácticas. Requiere calificación mínima de 85/100 para aprobar.</p>
+          </div>
+          <div class="resource-action">
+            <button class="btn-action" onclick="abrirModalExamen()">📝 Presentar Examen</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. SECCIÓN CERTIFICACIÓN (Cuadro Grande Independiente) -->
+    <section id="seccion-certificacion" class="bloque-seccion">
+      <h2 class="section-title">Certificación Oficial</h2>
+      <div class="certificate-box">
+        <div class="cert-icon">🏆</div>
+        <div class="cert-details">
+          <span class="product-badge badge-gold">Diploma de Acreditación</span>
+          <h3>Certificado en Uso Ético y Efectivo de IA Generativa</h3>
+          <p id="estado-certificado-texto">Completa los 4 módulos de aprendizaje y aprueba la evaluación final con un mínimo de 85/100 para desbloquear tu diploma oficial.</p>
+        </div>
+        <div class="cert-cta">
+          <button id="btn-certificado" class="btn-cert-locked" onclick="abrirModalCertificado()">🔒 Certificado Bloqueado (0%)</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- =========================================================
+       MODALES PERSONALIZADOS (Reemplazan los avisos del navegador)
+       ========================================================= -->
+
+  <!-- Modal 1: Detalle de Módulo (Toma el color dinámico del módulo) -->
+  <div id="modal-modulo" class="modal-overlay oculto">
+    <div id="modal-modulo-card" class="modal-card">
+      <div class="modal-top">
+        <span id="modal-mod-icon" class="modal-big-icon">💡</span>
+        <button class="btn-close" onclick="cerrarModal('modal-modulo')">✕</button>
+      </div>
+      <h3 id="modal-mod-titulo">Título del Módulo</h3>
+      <p id="modal-mod-cuerpo">Contenido detallado del módulo...</p>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="cerrarModal('modal-modulo')">Cerrar</button>
+        <button id="btn-completar-mod" class="btn-action" onclick="completarModuloActual()">✅ Marcar Módulo como Completado</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Tarjeta de Prompt para Copiar -->
+  <div id="modal-prompt" class="modal-overlay oculto">
+    <div class="modal-card modal-white">
+      <div class="modal-top">
+        <span class="product-badge">Plantilla Maestra de Prompting</span>
+        <button class="btn-close" onclick="cerrarModal('modal-prompt')">✕</button>
+      </div>
+      <h3>Estructura Rol - Tarea - Contexto - Formato</h3>
+      <p class="modal-sub">Copia esta plantilla y sustituye los textos entre corchetes antes de enviarla a la IA:</p>
+      <div id="texto-prompt-copiar" class="prompt-box">Actúa como un experto en [ESPECIALIDAD O MATERIA]. Necesito que [TAREA ESPECÍFICA A REALIZAR] considerando el siguiente contexto: [CONTEXTO O RESTRICCIONES]. Entrega el resultado estructurado en [FORMATO: tabla, lista con viñetas o resumen] con un tono claro y verificable.</div>
+      <p id="aviso-copiado" class="copy-feedback oculto">✅ ¡Prompt copiado al portapapeles correctamente!</p>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="cerrarModal('modal-prompt')">Cerrar</button>
+        <button class="btn-action" onclick="ejecutarCopiadoPrompt()">📋 Copiar al Portapapeles</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Examen Interactivo Módulo 4 -->
+  <div id="modal-examen" class="modal-overlay oculto">
+    <div class="modal-card modal-white">
+      <div class="modal-top">
+        <span class="product-badge">Evaluación Módulo 4 (Mínimo: 85/100)</span>
+        <button class="btn-close" onclick="cerrarModal('modal-examen')">✕</button>
+      </div>
+      <h3>Cuestionario de Ética y Buenas Prácticas</h3>
+      <form id="form-examen" onsubmit="calificarExamen(event)">
+        <div class="quiz-item">
+          <p><strong>1. ¿Qué información NUNCA debes ingresar en un prompt público de IA Generativa?</strong></p>
+          <label><input type="radio" name="p1" value="0" required> Temas generales de estudio o programación.</label>
+          <label><input type="radio" name="p1" value="50"> Datos personales, contraseñas o información confidencial.</label>
+        </div>
+        <div class="quiz-item">
+          <p><strong>2. ¿Qué debes hacer si la IA genera una cita bibliográfica o dato estadístico?</strong></p>
+          <label><input type="radio" name="p2" value="50" required> Verificarlo en fuentes reales para evitar alucinaciones.</label>
+          <label><input type="radio" name="p2" value="0"> Copiarlo directamente sin revisar porque la IA nunca falla.</label>
+        </div>
+        <div id="resultado-examen-box" class="quiz-result oculto"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" onclick="cerrarModal('modal-examen')">Cerrar</button>
+          <button type="submit" class="btn-action">Enviar y Calificar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 4: Certificado / Descarga PDF / Cerrar Sesión -->
+  <div id="modal-general" class="modal-overlay oculto">
+    <div class="modal-card modal-white">
+      <div class="modal-top">
+        <span id="modal-gen-badge" class="product-badge">Información</span>
+        <button class="btn-close" onclick="cerrarModal('modal-general')">✕</button>
+      </div>
+      <h3 id="modal-gen-titulo">Título</h3>
+      <div id="modal-gen-contenido">Contenido</div>
+      <div id="modal-gen-botones" class="modal-footer"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

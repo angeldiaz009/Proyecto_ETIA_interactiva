@@ -1,0 +1,50 @@
+@startuml
+entity "usuarios" as usuarios {
+    * id_usuario : INT <<PK>>
+    --
+    * nombre : VARCHAR(100)
+    * email : VARCHAR(100)
+    * password : VARCHAR(255)
+    * progreso_general : DECIMAL(5,2)
+}
+
+entity "modulos" as modulos {
+    * id_modulo : INT <<PK>>
+    --
+    * titulo : VARCHAR(100)
+    * tipo_contenido : VARCHAR(50)
+    * descripcion : TEXT
+}
+
+entity "apuntes_plantillas" as apuntes {
+    * id_apunte : INT <<PK>>
+    --
+    * id_modulo : INT <<FK>>
+    * titulo : VARCHAR(100)
+    * texto_prompt : TEXT
+    * archivo_pdf : VARCHAR(255)
+}
+
+entity "evaluaciones" as evaluaciones {
+    * id_evaluacion : INT <<PK>>
+    --
+    * id_usuario : INT <<FK>>
+    * id_modulo : INT <<FK>>
+    * calificacion : DECIMAL(5,2)
+    * aprobado : BOOLEAN
+    * fecha_evaluacion : DATETIME
+}
+
+entity "certificados" as certificados {
+    * id_certificado : INT <<PK>>
+    --
+    * id_usuario : INT <<FK>>
+    * folio_unico : VARCHAR(50)
+    * fecha_emision : DATE
+}
+
+usuarios ||--o{ evaluaciones : "presenta (1:N)"
+modulos ||--o{ evaluaciones : "pertenece_a (1:N)"
+modulos ||--o{ apuntes : "contiene (1:N)"
+usuarios ||--o| certificados : "obtiene (1:1)"
+@enduml
